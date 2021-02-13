@@ -1,37 +1,20 @@
 import React, {Component} from 'react';
 
 class Membro extends Component{
-    constructor(props){
-        super(props);
-        this.state = {
-            status: false
-        };
-        this.sair = this.sair.bind(this);
-        this.entrar = this.entrar.bind(this);
-    }
-
-    entrar(){
-        this.setState({status: true});
-    }
-
-    sair(){
-        this.setState({status: false});
-    }
+    
 
   render(){
     return (
       <div>
-        {this.state.status ?
-            <div>
-                <h2>Bem vindo ao Sistema</h2>
-                <button onClick={this.sair}>Sair</button>
-            </div> :
-            <div>
-                Faça o login
-                <button onClick={this.entrar}>Entrar no Sistema</button>
-            </div>
-        }
-        
+        {this.state.fedd.map((item)=>{
+            return(
+                <div key={item.id}>
+                    <h3>{item.username}</h3>
+                    <a>{item.curtidas} curtidas 
+                    / {item.comentarios} comentarios</a>
+                </div>
+            );
+        })}
       </div>
     );
   }
