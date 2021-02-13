@@ -1,21 +1,41 @@
 import React from 'react';
 
-const Bemvindo = (props) => {
+const Equipe = (props) => {
     return(
         <div>
-            <h2>Bem vindo {props.nome}</h2>
-            <h3>Tenho {props.idade} anos.</h3>
+            <Sobre nome={props.nome} cargo={props.cargo} idade={props.idade}/>
+            <Social fb={props.facebook}/>
         </div>
     )
+}   
+
+const Sobre = (props) => {
+  return(
+      <div>
+          <h2>Olá sou o(a) {props.nome}</h2>
+          <h3>Cargo: {props.cargo}</h3>
+          <h3>Idade: {props.idade}</h3>
+          <hr/>
+      </div>
+  )
+}
+
+const Social = (props) => {
+  return (
+    <div>
+      <a href={props.fb}>Facebook</a>
+      <a>Linkedin</a>
+      <a>Youtube</a>
+    </div>
+  )
 }
 
 function App() {
   return (
     <div>
-        Olá Mundo!
-        <Bemvindo nome="Marcio" idade="38"/>
-        <Bemvindo nome="Cremilda" idade="49"/>
-        <h1>Curso React</h1> 
+        <h1>Conheça nossa equipe</h1> 
+        <Equipe nome="Marcio" cargo="programador" idade="38" facebook="https://www.facebook.com/marciomhs/"/>
+        <Equipe nome="Mario" cargo="programador" idade="36" facebook="https://www.facebook.com/mario.h.souza.1"/>
     </div>
   );
 }
