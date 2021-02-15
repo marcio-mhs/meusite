@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import TodoList from './components/TodoList';
-import './style.css';
-//https://sujeitoprogramador.com/rn-api/?api=post
+import Routes from './routes';
 
 class App extends Component{
 
@@ -15,8 +13,7 @@ class App extends Component{
   render(){
     return (
       <div className="container">
-        <h1>Lista de tarefas</h1>
-        <TodoList/>
+        <Routes/>
       </div>      
     );
   }

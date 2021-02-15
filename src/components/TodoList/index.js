@@ -30,6 +30,7 @@ class TodoList extends Component {
         let filtro = this.state.items.filter((item) => {
             return (item.key != key);
         });
+
         this.setState({items: filtro});
     }
 
