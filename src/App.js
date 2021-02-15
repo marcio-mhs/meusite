@@ -1,49 +1,56 @@
 import React, {Component} from 'react';
-
+import './style.css'
 class App extends Component{
 
   constructor(props){
     super(props);
     this.state = {
-        form:{
-          nome: '',
-          email: '',
-          senha: '',
-          sexo: ''
-        }
-    };
-    this.dadosForm = this.dadosForm.bind(this);
+      numero: 0,
+      botao: 'VAI'
+    }
+    this.timer = null;
+    this.vai = this.vai.bind(this);
+    this.limpar = this.limpar.bind(this);
   }
 
-  dadosForm(e){
-    let form = this.state.form;
-    form[e.target.name] = e.target.value;
-    this.setState({form: form});
+  vai(){
+
+    let state = this.state;
+    
+    if (this.timer != null){
+      clearInterval(this.timer);
+      this.timer = null;  
+      state.botao = "VAI";
+    } else {
+      this.timer = setInterval(() =>{
+        state.numero += 0.1;
+        this.setState(state);
+      }, 100);      
+      state.botao = "PAUSAR";
+    }   
+
+    this.setState(state);
+    
+  }
+  limpar(){
+    clearInterval(this.timer);
+    this.timer = null;  
+    let state = this.state;
+    state.numero = 0;
+    state.botao = "VAI";
+    this.setState(state);
   }
 
   render(){
     return (
-      <div>
-          <h2>Login</h2>
-            Nome:
-            <input type="text" name="nome" value={this.state.form.nome} onChange={this.dadosForm}/><br/><br/>
-            Email:
-            <input type="email" name="email" value={this.state.form.email} onChange={this.dadosForm}/><br/><br/>
-            Senha:
-            <input type="password" name="senha" value={this.state.form.senha} onChange={this.dadosForm}/><br/><br/>
-            Sexo:
-            <select name="sexo" value={this.state.form.sexo} onChange={this.dadosForm}>
-              <option value="masculino">Masculino</option>
-              <option value="feminino">Feminino</option>
-            </select>
-            <div>
-              <h3>{this.state.form.nome}</h3>
-              <h3>{this.state.form.email}</h3>
-              <h3>{this.state.form.senha}</h3>
-              <h3>{this.state.form.sexo}</h3>
-            </div>
-      </div>
-      
+      <div className="container">
+          <img src={require('./assets/cronometro.png')} className="img"/>
+          <a className="timer">{this.state.numero.toFixed(2)}</a>
+          <div className="areaBtn">
+            <a className="botao" onClick={this.vai}>{this.state.botao}</a>
+            <a className="botao" onClick={this.limpar}>LIMPAR</a>
+          </div>
+      </div>      
     );
   }
 }
