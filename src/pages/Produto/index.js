@@ -10,7 +10,7 @@ class Produto extends Component{
     }
 
     componentDidMount(){
-        const id = this.props.map.params;
+        const {id}= this.props.match.params;
         this.setState({id: id});
     }
     
